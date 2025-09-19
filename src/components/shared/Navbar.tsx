@@ -1,9 +1,33 @@
-// Navbar.tsx
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
+import Link from "next/link";
 
 const Navbar = () => {
+  const [show, setShow] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+       
+        setShow(false);
+      } else {
+      
+        setShow(true);
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
+
   return (
-    <div className="bg-blue-100 ">
+    <div
+      className={`fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${
+        show ? "translate-y-0" : "-translate-y-full"
+      } bg-blue-100`}
+    >
       <div className="w-[1920px] max-w-full mx-auto px-4 sm:px-8 lg:px-20">
         <div className="navbar">
           {/* Navbar Start */}
@@ -34,35 +58,35 @@ const Navbar = () => {
                 className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow-lg bg-white rounded-xl w-52"
               >
                 <li>
-                  <a className="hover:text-blue-600">Home</a>
+                  <Link href="/" className="hover:text-blue-600">Home</Link>
                 </li>
                 <li>
-                  <a className="hover:text-blue-600">Shop</a>
+                  <Link href="/shoes" className="hover:text-blue-600">Shoes</Link>
                 </li>
                 <li>
-                  <a className="hover:text-blue-600">About</a>
+                  <Link href="/hero" className="hover:text-blue-600">Hero</Link>
                 </li>
                 <li>
                   <a className="hover:text-blue-600">Contact</a>
                 </li>
               </ul>
             </div>
-            <a className="btn btn-ghost normal-case text-2xl font-bold text-blue-600">
+            <Link href="/" className="btn btn-ghost normal-case text-2xl font-bold text-blue-600">
               Shoe<span className="text-gray-800">Store</span>
-            </a>
+            </Link>
           </div>
 
           {/* Navbar Center */}
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1 font-medium">
               <li>
-                <a className="hover:text-blue-600 transition">Home</a>
+                <Link href="/" className="hover:text-blue-600 transition">Home</Link>
               </li>
               <li>
-                <a className="hover:text-blue-600 transition">Shop</a>
+                <Link href="/shoes" className="hover:text-blue-600 transition">Shoes</Link>
               </li>
               <li>
-                <a className="hover:text-blue-600 transition">About</a>
+                <Link href="/hero" className="hover:text-blue-600 transition">Hero</Link>
               </li>
               <li>
                 <a className="hover:text-blue-600 transition">Contact</a>

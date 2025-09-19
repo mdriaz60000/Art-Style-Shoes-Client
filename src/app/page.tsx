@@ -1,14 +1,16 @@
+import LatestShoes from "@/components/product/LatestShoes";
+import PopularShoes from "@/components/product/PopularShoes";
 import Banner from "@/components/shared/Banner/Banner";
-import Footer from "@/components/shared/Footer";
-import Navbar from "@/components/shared/Navbar";
-import Image from "next/image";
+
 
 export default function Home() {
   return (
 <div>
- <Navbar />
+ 
  <Banner />
- <Footer />
+ <LatestShoes />
+ <PopularShoes />
+
 </div>
   );
 }
