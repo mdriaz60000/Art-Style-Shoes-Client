@@ -1,9 +1,11 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import { IoIosArrowRoundForward } from 'react-icons/io';
 
 const ShoesCard = ({ item }: { item: { id: number; name: string; price: number; image: string } }) => {
     return (
+        <Link href={`/shoes/${item.id}`} className="no-underline ">
         <div className="border rounded-lg shadow-md  flex flex-col items-center hover:scale-105 transition-transform duration-300">
             {/* Product Image */}
             <Image
@@ -25,6 +27,8 @@ const ShoesCard = ({ item }: { item: { id: number; name: string; price: number; 
             </button>
         </section>
         </div>
+        </Link>
+
     );
 };
 
